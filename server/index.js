@@ -1,13 +1,15 @@
-require('dotenv').config()
 const express = require('express')
+require('dotenv').config()
 const app = express()
 const cors = require('cors')
-const {SERVER_PORT} = process.env
-const {getCollection} = require('./controller.js')
+const SERVER_PORT = process.env.SERVER_PORT
+const {seed, getCollection} = require('./controller.js')
 
 app.use(express.json())
 app.use(cors())
 
+app.post('/seed', seed)
+
 app.get('/albums', getCollection)
 
-app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
+app.listen(SERVER_PORT, () => {console.log("listening on " + SERVER_PORT)})

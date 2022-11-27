@@ -1,22 +1,22 @@
-require('dotenv').config()
+require('dotenv').config();
 const {CONNECTION_STRING} = process.env
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize (CONNECTION_STRING, {
-    dialect:'postgres',
-    dialectOptions: {
-        ssl: {
-            rejectUnauthorized: false
-        }
-    }
-  }
-)
+// const sequelize = new Sequelize (CONNECTION_STRING, {
+//     dialect:'postgres',
+//     dialectOptions: {
+//         ssl: {
+//             rejectUnauthorized: false
+//         }
+//     }
+//   }
+// )
 
 module.exports = {
     getCollection: (req, res) => {
-        sequelize.query('select *from albums')
+        sequelize.query('select * from albums')
         .then(dbRes => res.status(200).send(dbRes[0]))
-        .catch(err =>console.logg(err))
+        .catch(err =>console.log(err))
     },
 
     seed: (req, res) => {
@@ -24,7 +24,7 @@ module.exports = {
         drop table if exists albums;
 
         create table albums (
-            album_id serial primary key,
+            album_id serial, primary key,
             title varchar,
             artist varchar,
             genre varchar,
@@ -36,7 +36,7 @@ module.exports = {
         values ('I'm Wide Awake, It's Morning', 'Bright Eyes', 'Rock', '13', 'Black'),
         ('Can't Stop, Won't Stop', 'The Maine', 'Rock', '12', 'Gold Marble'),
         ('Wish (30th Anniversary Remaster', 'The Cure', 'Rock', '61309', 'Black'),
-        ('Live From Austin, TX 89', 'Waylon Jennings', 'Country', '5681', 'Orange Blossom'),
+        ('Live From Austin, TX 89', 'Waylon Jennings', 'Country', '5681', 'Orange Blossom');
         `
         ).then(() => {console.log ('DB seeded!')
         res.sendStatus(200)
