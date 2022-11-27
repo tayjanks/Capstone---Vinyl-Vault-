@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Saira', sans-serif;
+    background-image: url("https://wallpaperaccess.com/full/3382539.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    
+  
+  }
+
+
+
+  button {
+    height:100px;
+    width: 150px;
+    border-radius: 10%;
+    background-color: aqua;
+    
+  }
+  
+  button:hover {
+    box-shadow: 0 0 35px black;
+    transform:scale(125%);
+
+  }
+  
+  button:active {
+    transform:scale(85%);
+  }
+
+
+h1 {
+    background-color: #2D232E;
+    opacity: 80%;
+    height:50px;
+    padding: 15px;
+    width:100%;
+    margin-top: 0;
+}
+
+
+.img-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px;
+
+}
+
+.btn-container{
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    
+}
+
+.btn-1, .btn-2 {
+    margin: 30px;
+    font-size: larger;
+    font-weight: bolder;
+    
+}
+
+input[type='text'] {
+  display:flex;
+  flex-direction: column;
+  width: 30%;
+  height: 30px;
+  border: none;
+  border-bottom: 2px solid #232323;
+  color: #232323;
+  background-color: snow;
+}
+
+.add-album-btn {
+  background-color: #232323;
+  width: 75px;
+  height: 25px;
+  color: turquoise;
+  border: none;
+  margin: 5px;
+}
+
+h2 {
+  color:white
+}
+
+#collection-continer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.album-cover-image {
+  width: 300px; 
+  height: 300px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.album-card {
+  background-color: turquoise;
+  width: 300px;
+  margin: 20px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 12px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+footer {
+  display:flex;
+  justify-content: space-between;
+  background-color: #2D232E;
+  opacity: 75%;
+  color:white;
+  height:50px;
+  padding: 15px;
+  width:100%;
+  position:fixed;
+  bottom:0;
+  
+}
+
+.twitter{
+  height:50px;
+
+ 
+}
+.insta{
+  height:50px;
+}
+.fb{
+  height:50px;
+}
+
+.twitter:hover{
+    box-shadow:10px 10px 45px white;
+    border-radius:180%;
+  }
+  .insta:hover{
+    box-shadow:10px 10px 45px white;
+    border-radius:180%;
+  }
+  .fb:hover{
+    box-shadow:10px 10px 45px white;
+    border-radius:180%;
+  }
