@@ -1,4 +1,4 @@
-const { default: axios } = require("axios")
+//const { default: axios } = require("axios")
 
 const collectionContainer = document.querySelector("#collection-continer")
 
@@ -83,7 +83,7 @@ function showCollection () {
     imgContainer.remove()
     btnContainer.remove()
     document.getElementById('collection-continer').hidden=false;
-    //getAllAlbums()
+    getAllAlbums()
 }
 
 addtoCollectionBtn.addEventListener("click", addAlbumForm)
