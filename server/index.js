@@ -3,10 +3,11 @@ require('dotenv').config()
 const app = express()
 const cors = require('cors')
 const SERVER_PORT = process.env.SERVER_PORT
-const {seed, getCollection} = require('./controller.js')
+const {seed, getCollection} = require('./controller')
 
 app.use(express.json())
 app.use(cors())
+
 
 app.post('/seed', seed)
 
