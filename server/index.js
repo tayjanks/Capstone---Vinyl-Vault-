@@ -13,6 +13,6 @@ app.use(cors())
 
 app.post('/seed', seed)
 
-// app.get('/albums', getCollection)
+app.get('/albums', getCollection)
 
 app.listen(SERVER_PORT, () => {console.log("listening on " + SERVER_PORT)})

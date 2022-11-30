@@ -2,10 +2,8 @@
 
 const collectionContainer = document.querySelector("#collection-continer")
 
-const baseURL = `http://localhost:3004`
 
 const collectionCallback = ({ data: collection }) => displayCollection(collection)
-const getAllAlbums = () => axios.get(baseURL).then(collectionCallback).catch(errCallback)
 const errCallback = err => console.log(err)
 
 document.getElementById('form-container').hidden = true;
@@ -84,6 +82,18 @@ function showCollection () {
     btnContainer.remove()
     document.getElementById('collection-continer').hidden=false;
     getAllAlbums()
+}
+
+
+function getAllAlbums () {axios.get('http://localhost:3004/albums')
+.then(res => {
+    res.data.forEach(album => {
+        const option = document.createElement('option')
+        option.setAttribute('value', album['album_id'])
+        option.textContent = album.title
+        albumCard.appendChild(album)
+    })
+})
 }
 
 addtoCollectionBtn.addEventListener("click", addAlbumForm)
