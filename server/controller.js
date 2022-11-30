@@ -21,24 +21,23 @@ module.exports = {
 
     seed: (req, res) => {
         sequelize.query(`
-        drop table if exists albums;
+            drop table if exists albums;
 
-        create table albums (
-            album_id serial, primary key,
-            title varchar,
-            artist varchar,
-            genre varchar,
-            pressing integer,
-            color varchar
-        );
+            create table albums (
+                album_id serial primary key,
+                title varchar,
+                artist varchar,
+                genre varchar,
+                pressing integer,
+                color varchar
+             );
 
-        insert into albums (title, artist, genre, pressing, color)
-        values ('I'm Wide Awake, It's Morning', 'Bright Eyes', 'Rock', '13', 'Black'),
-        ('Can't Stop, Won't Stop', 'The Maine', 'Rock', '12', 'Gold Marble'),
-        ('Wish (30th Anniversary Remaster', 'The Cure', 'Rock', '61309', 'Black'),
-        ('Live From Austin, TX 89', 'Waylon Jennings', 'Country', '5681', 'Orange Blossom');
-        `
-        ).then(() => {console.log ('DB seeded!')
+            insert into albums (title, artist, genre, pressing, color)
+            values ('Im Wide Awake, Its Morning', 'Bright Eyes', 'Rock', 13, 'Black'),
+            ('Cant Stop Wont Stop', 'The Maine', 'Rock', 12, 'Gold Marble'),
+            ('Wish 30th Anniversary Remaster', 'The Cure', 'Rock', 61309, 'Black'),
+            ('Live From Austin TX 89', 'Waylon Jennings', 'Country', 5681, 'Orange Blossom');
+         `).then(() => {console.log ('DB seeded!')
         res.sendStatus(200)
         }).catch(err => console.log('error seeding DB', err))
     }
