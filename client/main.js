@@ -1,4 +1,3 @@
-
 const collectionContainer = document.querySelector("#collection-continer")
 
 
@@ -29,7 +28,7 @@ const albumsContainer = document.querySelector(".collection-container")
     let color= document.querySelector("#color")
 
 
-function submitHandler(e) {
+function submitAlbum(e) {
     e.preventDefault()
 
     let body = {
@@ -42,17 +41,14 @@ function submitHandler(e) {
     }
 
     axios.post("http://localhost:3004/albums", body)
-        .then(() => {
-            title.value = ''
-            artist.value = ''
-            genre.value = ''
-            pressing.value = ''
-            color.value = ''
-
-
-        }
-
-        )
+        .then((res) => {
+            console.log(res.data)
+            if (res.status === 200) {
+                alert ("Album added!")
+            }})
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
 
@@ -83,17 +79,23 @@ function showCollection () {
     getAllAlbums()
 }
 
+function deleteAlbum (id) {
+    axios.delete(`https://localhost:3004/albums/${id}`)
+        .then(()=> getAllAlbums())
+        .catch(err => console.log(err))
+}
+
 
 function getAllAlbums () {axios.get('http://localhost:3004/albums')
 .then(res => {
     res.data.forEach(album => {
          let albumCard=  `<div class="album-card">
-                <h2>${album.title}, ${album.artist}</h2>
+                <h2>${album.title} </h2>
                 <p>Artist: ${album.artist}</p>
                 <p>Genre: ${album.genre}</p>
                 <p>Pressing: ${album.pressing}</p>
                 <p>Album Color: ${album.color}</p>
-                <button id = "delete-btn" onclick="deleteCard(${album['album_id']})">Delete</button>
+                <button id = "delete-btn" onclick="deleteAlbum(${album['album_id']})">Delete</button>
                 </div>
             `
         collectionContainer.innerHTML += albumCard
@@ -121,3 +123,4 @@ function showCollection () {
 
 addtoCollectionBtn.addEventListener("click", addAlbumForm)
 viewCollectionBtn.addEventListener("click", showCollection)
+addAlbumBtn.addEventListener("click", submitAlbum)

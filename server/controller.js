@@ -19,6 +19,32 @@ module.exports = {
         .catch(err =>console.log(err))
     },
 
+    submitAlbum: (req,res) => {
+        const title = req.body.title
+        const artist = req.body.artist
+        const genre = req.body.genre
+        const pressing = req.body.pressing
+        const color = req.body.color
+
+        sequelize.query(`
+            insert into albums (title, artist, genre, pressing, color)
+            values ('${title}','${artist}','${genre}','${pressing}','${color}');
+            `)
+            .then((dbRes) =>{res.status(200).send(dbRes[0])
+        })
+        .catch((err)=> {
+            console.log(err)
+        })
+    },
+
+    deleteAlbum: (req, res) => {
+        const {id} = req.params
+        sequelize.query(`delete from albums where album_id = ${id}`)
+        .then(dbRes => res.status(200).send(dbRes[0]))
+        .catch(err => console.log(err))
+    },
+
+
     seed: (req, res) => {
         sequelize.query(`
             drop table if exists albums;

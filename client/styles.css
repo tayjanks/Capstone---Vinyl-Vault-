@@ -109,6 +109,7 @@ h2 {
 .album-card {
   background-color: #AF9FC9;
   width: 300px;
+  height: 400px;
   margin: 20px; 
   display: flex;
   flex-direction: column;
