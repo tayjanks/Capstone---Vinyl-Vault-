@@ -13,7 +13,7 @@ const sequelize = new Sequelize (CONNECTION_STRING, {
 )
 
 module.exports = {
-    getCollection: (req, res) => {
+    getAllAlbums: (req, res) => {
         sequelize.query('select * from albums')
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err =>console.log(err))

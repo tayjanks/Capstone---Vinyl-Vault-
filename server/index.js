@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
-const {seed, getCollection} = require('./controller')
+const {seed, getAllAlbums} = require('./controller')
 
 app.use(express.json())
 app.use(cors())
@@ -13,6 +13,6 @@ app.use(cors())
 
 app.post('/seed', seed)
 
-app.get('/albums', getCollection)
+app.get('/albums', getAllAlbums)
 
 app.listen(SERVER_PORT, () => {console.log("listening on " + SERVER_PORT)})

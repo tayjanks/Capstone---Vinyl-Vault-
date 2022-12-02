@@ -20,6 +20,11 @@ body {
     background-color: aqua;
     
   }
+
+  #delete-btn {
+    height: 50px;;
+    width: 100px;
+  }
   
   button:hover {
     box-shadow: 0 0 35px black;
@@ -102,7 +107,7 @@ h2 {
 }
 
 .album-card {
-  background-color: turquoise;
+  background-color: #AF9FC9;
   width: 300px;
   margin: 20px; 
   display: flex;
@@ -111,6 +116,7 @@ h2 {
   border-radius: 12px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  text-align: center;
 }
 
 footer {

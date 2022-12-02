@@ -1,4 +1,3 @@
-//const { default: axios } = require("axios")
 
 const collectionContainer = document.querySelector("#collection-continer")
 
@@ -19,13 +18,9 @@ const imgContainer = document.querySelector(".img-container");
 const formContainer = document.querySelector("#form-container")
 
 
-addAlbumBtn = document.querySelector(".add-album-btn")
+const addAlbumBtn = document.querySelector(".add-album-btn")
 
-
-
-
-function submitHandler(e) {
-    e.preventDefault()
+const albumsContainer = document.querySelector(".collection-container")
 
     let title = document.querySelector("#album-title")
     let artist= document.querySelector("#artist")
@@ -33,7 +28,11 @@ function submitHandler(e) {
     let pressing= document.querySelector("#pressing")
     let color= document.querySelector("#color")
 
-    let bodyObj = {
+
+function submitHandler(e) {
+    e.preventDefault()
+
+    let body = {
         title: title.value,
         artist: artist.value,
         genre: genre.value,
@@ -42,13 +41,19 @@ function submitHandler(e) {
        
     }
 
-    createAlbum(bodyObj)
-    title.value = ''
-    artist.value = ''
-    genre.value = ''
-    pressing.value = ''
-    color.value = ''
-}
+    axios.post("http://localhost:3004/albums", body)
+        .then(() => {
+            title.value = ''
+            artist.value = ''
+            genre.value = ''
+            pressing.value = ''
+            color.value = ''
+
+
+        }
+
+        )
+    }
 
 
 function createAlbumCard(album){
@@ -64,12 +69,6 @@ function createAlbumCard(album){
     collectionContainer.appendChild(albumCard)
 };
 
-function displayCollection (arr) {
-    collectionContainer.innerHTML = ``
-    for (let i=0; i<arr.length;i++){
-        createAlbumCard(arr[i])
-    }
-}
 
 function addAlbumForm () {
     imgContainer.remove()
@@ -88,13 +87,37 @@ function showCollection () {
 function getAllAlbums () {axios.get('http://localhost:3004/albums')
 .then(res => {
     res.data.forEach(album => {
-        const option = document.createElement('option')
-        option.setAttribute('value', album['album_id'])
-        option.textContent = album.title
-        albumCard.appendChild(album)
+         let albumCard=  `<div class="album-card">
+                <h2>${album.title}, ${album.artist}</h2>
+                <p>Artist: ${album.artist}</p>
+                <p>Genre: ${album.genre}</p>
+                <p>Pressing: ${album.pressing}</p>
+                <p>Album Color: ${album.color}</p>
+                <button id = "delete-btn" onclick="deleteCard(${album['album_id']})">Delete</button>
+                </div>
+            `
+        collectionContainer.innerHTML += albumCard
     })
 })
 }
+
+
+
+
+function addAlbumForm () {
+    imgContainer.remove()
+    btnContainer.remove()
+    document.getElementById('form-container').hidden = false
+}
+
+function showCollection () {
+    imgContainer.remove()
+    btnContainer.remove()
+    document.getElementById('collection-continer').hidden=false;
+    getAllAlbums()
+}
+
+
 
 addtoCollectionBtn.addEventListener("click", addAlbumForm)
 viewCollectionBtn.addEventListener("click", showCollection)
