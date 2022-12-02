@@ -15,6 +15,6 @@ app.post('/seed', seed)
 
 app.get('/albums', getAllAlbums)
 app.post('/albums', submitAlbum)
-app.delete('/albums/:id', deleteAlbum)
+app.delete('/albums', deleteAlbum)
 
 app.listen(SERVER_PORT, () => {console.log("listening on " + SERVER_PORT)})

@@ -80,7 +80,7 @@ function showCollection () {
 }
 
 function deleteAlbum (id) {
-    axios.delete(`https://localhost:3004/albums/${id}`)
+    axios.delete(`https://localhost:3004/albums`)
         .then(()=> getAllAlbums())
         .catch(err => console.log(err))
 }

@@ -38,7 +38,7 @@ module.exports = {
     },
 
     deleteAlbum: (req, res) => {
-        const {id} = req.params
+        const {id} = album.album_id
         sequelize.query(`delete from albums where album_id = ${id}`)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))
