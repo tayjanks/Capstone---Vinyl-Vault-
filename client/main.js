@@ -13,15 +13,23 @@ const imgContainer = document.querySelector(".img-container");
 
 const formContainer = document.querySelector("#form-container")
 
+// const homeBtn = document.querySelector(".home-btn")
+
+
 
 const addAlbumBtn = document.querySelector(".add-album-btn")
+function refreshPage () {
+    document.location.reload();
+}
 
+addAlbumBtn.addEventListener("click", refreshPage)
 
     let title = document.querySelector("#album-title")
     let artist= document.querySelector("#artist")
     let genre= document.querySelector("#genre")
     let pressing= document.querySelector("#pressing")
     let color= document.querySelector("#color")
+
 
 
 function submitAlbum(e) {
