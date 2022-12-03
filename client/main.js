@@ -13,16 +13,11 @@ const imgContainer = document.querySelector(".img-container");
 
 const formContainer = document.querySelector("#form-container")
 
-// const homeBtn = document.querySelector(".home-btn")
-
-
 
 const addAlbumBtn = document.querySelector(".add-album-btn")
-function refreshPage () {
-    document.location.reload();
-}
 
-addAlbumBtn.addEventListener("click", refreshPage)
+
+
 
     let title = document.querySelector("#album-title")
     let artist= document.querySelector("#artist")
@@ -51,7 +46,7 @@ function submitAlbum(e) {
             if (res.status === 200) {
                 alert ("Album added!")
             }})
-        .catch((err) => {
+            .catch((err) => {
             console.log(err)
         })
     }
