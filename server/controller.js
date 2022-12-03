@@ -1,6 +1,7 @@
 require('dotenv').config();
 const {CONNECTION_STRING} = process.env
 const Sequelize = require('sequelize')
+const path = require("path");
 
 const sequelize = new Sequelize (CONNECTION_STRING, {
     dialect:'postgres',
@@ -13,11 +14,22 @@ const sequelize = new Sequelize (CONNECTION_STRING, {
 )
 
 module.exports = {
+    homePage: (req, res) => {
+        res.sendFile(path.join(__dirname, "../client/index.html"))
+    },
+    stylePage: (req, res) => {
+        res.sendFile(path.join(__dirname, "../client/styles.css"))
+    },
+    homeJS: (req, res) => {
+        res.sendFile(path.join(__dirname, "../client/main.js"))
+    },
+
     getAllAlbums: (req, res) => {
         sequelize.query('select * from albums')
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err =>console.log(err))
     },
+
 
     submitAlbum: (req,res) => {
         const title = req.body.title
@@ -38,7 +50,7 @@ module.exports = {
     },
 
     deleteAlbum: (req, res) => {
-        const {id} = album.album_id
+        const {id} = req.params
         sequelize.query(`delete from albums where album_id = ${id}`)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))

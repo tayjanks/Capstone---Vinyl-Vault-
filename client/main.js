@@ -1,3 +1,5 @@
+
+
 const collectionContainer = document.querySelector("#collection-continer")
 
 
@@ -54,17 +56,24 @@ function submitAlbum(e) {
 
 function createAlbumCard(album){
     const albumCard = document.createElement('div')
-    taskCard.classList.add('album-card')
+    albumCard.classList.add('album-card')
 
-    taskCard.innerHTML = `<p class = "album-title" ${album.title}</p>
+    albumCard.innerHTML = `<p class = "album-title" ${album.title}</p>
     <p class = "album-artist" ${album.artist}</p>
     <p class = "album-genre" ${album.genre}</p>
     <p class = "album-pressing" ${album.pressing}</p>
     <p class = "album-color"${album.color}</p>
     `
     collectionContainer.appendChild(albumCard)
+    //collectionContainer.innerHTML += albumCard
 };
 
+function getAllAlbums () {axios.get('http://localhost:3004/albums')
+.then(res => {collectionContainer.innerHTML = ``
+albumsArray = res.body;
+ for (let i=0; i < albumsArray.length; i++) {
+    createAlbumCard(albumsArray[i])}})
+}
 
 function addAlbumForm () {
     imgContainer.remove()
@@ -86,25 +95,6 @@ function deleteAlbum (id) {
 }
 
 
-function getAllAlbums () {axios.get('http://localhost:3004/albums')
-.then(res => {
-    res.data.forEach(album => {
-         let albumCard=  `<div class="album-card">
-                <h2>${album.title} </h2>
-                <p>Artist: ${album.artist}</p>
-                <p>Genre: ${album.genre}</p>
-                <p>Pressing: ${album.pressing}</p>
-                <p>Album Color: ${album.color}</p>
-                <button id = "delete-btn" onclick="deleteAlbum(${album['album_id']})">Delete</button>
-                </div>
-            `
-        collectionContainer.innerHTML += albumCard
-    })
-})
-}
-
-
-
 
 function addAlbumForm () {
     imgContainer.remove()
@@ -124,3 +114,4 @@ function showCollection () {
 addtoCollectionBtn.addEventListener("click", addAlbumForm)
 viewCollectionBtn.addEventListener("click", showCollection)
 addAlbumBtn.addEventListener("click", submitAlbum)
+
