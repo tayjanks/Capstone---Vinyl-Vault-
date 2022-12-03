@@ -38,6 +38,7 @@ function submitAlbum(e) {
 
     axios.post("http://localhost:3004/submitalbum", body)
         .then((res) => {
+            document.location.reload()
             console.log(res.data)
             if (res.status === 200) {
                 alert ("Album added!")
@@ -64,6 +65,7 @@ function createAlbumCard(album){
 function deleteAlbumCard(id) {
     axios.delete(`http://localhost:3004/albums/${id}`)
         .then((res) => {
+        document.location.reload()
         console.log(res.data)
         if (res.status === 200) {
             alert ("Album deleted!")

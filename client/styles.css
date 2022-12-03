@@ -88,6 +88,19 @@ input[type='text'] {
   margin: 5px;
 }
 
+.home-section {
+  margin-right: 2%;
+  margin-top: 1%;
+
+}
+
+.home-btn {
+  width: 75px;
+  height: 25px;
+  font-size: larger;
+  font-weight: bolder;
+}
+
 h2 {
   color:white
 }
