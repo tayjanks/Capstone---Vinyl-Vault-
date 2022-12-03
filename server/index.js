@@ -10,14 +10,14 @@ const {seed, getAllAlbums, submitAlbum, deleteAlbum, homePage, homeJS, stylePage
 app.use(express.json())
 app.use(cors())
 
-app.get('/albums', homePage)
+app.get('/', homePage)
 app.get('/main', homeJS)
 app.get('/styles', stylePage)
 
 app.post('/seed', seed)
 
 app.get('/albums', getAllAlbums)
-app.post('/albums', submitAlbum)
+app.post('/submitalbum', submitAlbum)
 app.delete('/albums/:id', deleteAlbum)
 
 app.listen(SERVER_PORT, () => {console.log("listening on " + SERVER_PORT)})

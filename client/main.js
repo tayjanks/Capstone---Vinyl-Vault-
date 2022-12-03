@@ -1,13 +1,9 @@
 
-
-const collectionContainer = document.querySelector("#collection-continer")
-
-
-const collectionCallback = ({ data: collection }) => displayCollection(collection)
+collectionContainer = document.querySelector("#collection-container")
 const errCallback = err => console.log(err)
 
 document.getElementById('form-container').hidden = true;
-document.getElementById('collection-continer').hidden=true;
+document.getElementById('collection-container').hidden =true;
 
 
 const viewCollectionBtn = document.querySelector(".btn-1")
@@ -21,7 +17,6 @@ const formContainer = document.querySelector("#form-container")
 
 const addAlbumBtn = document.querySelector(".add-album-btn")
 
-const albumsContainer = document.querySelector(".collection-container")
 
     let title = document.querySelector("#album-title")
     let artist= document.querySelector("#artist")
@@ -42,7 +37,7 @@ function submitAlbum(e) {
        
     }
 
-    axios.post("http://localhost:3004/albums", body)
+    axios.post("http://localhost:3004/submitalbum", body)
         .then((res) => {
             console.log(res.data)
             if (res.status === 200) {
@@ -65,14 +60,23 @@ function createAlbumCard(album){
     <p class = "album-color"${album.color}</p>
     `
     collectionContainer.appendChild(albumCard)
-    //collectionContainer.innerHTML += albumCard
 };
 
 function getAllAlbums () {axios.get('http://localhost:3004/albums')
-.then(res => {collectionContainer.innerHTML = ``
-albumsArray = res.body;
- for (let i=0; i < albumsArray.length; i++) {
-    createAlbumCard(albumsArray[i])}})
+.then(res => {
+    res.data.forEach(album => {
+         let albumCard=  `<div class="album-card">
+                <h2>${album.title}, ${album.artist}</h2>
+                <p>Artist: ${album.artist}</p>
+                <p>Genre: ${album.genre}</p>
+                <p>Pressing: ${album.pressing}</p>
+                <p>Album Color: ${album.color}</p>
+                <button id = "delete-btn" onclick="deleteAlbum(${album['album_id']})">Delete</button>
+                </div>
+            `
+        collectionContainer.innerHTML += albumCard
+    })
+})
 }
 
 function addAlbumForm () {
@@ -84,30 +88,16 @@ function addAlbumForm () {
 function showCollection () {
     imgContainer.remove()
     btnContainer.remove()
-    document.getElementById('collection-continer').hidden=false;
+    collectionContainer.hidden = false;
     getAllAlbums()
 }
 
 function deleteAlbum (id) {
-    axios.delete(`https://localhost:3004/albums`)
+    axios.delete(`https://localhost:3004/albums/${id}`)
         .then(()=> getAllAlbums())
         .catch(err => console.log(err))
 }
 
-
-
-function addAlbumForm () {
-    imgContainer.remove()
-    btnContainer.remove()
-    document.getElementById('form-container').hidden = false
-}
-
-function showCollection () {
-    imgContainer.remove()
-    btnContainer.remove()
-    document.getElementById('collection-continer').hidden=false;
-    getAllAlbums()
-}
 
 
 
