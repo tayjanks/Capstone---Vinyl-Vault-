@@ -1,4 +1,3 @@
-
 collectionContainer = document.querySelector("#collection-container")
 const errCallback = err => console.log(err)
 
@@ -62,6 +61,18 @@ function createAlbumCard(album){
     collectionContainer.appendChild(albumCard)
 };
 
+function deleteAlbumCard(id) {
+    axios.delete(`http://localhost:3004/albums/${id}`)
+        .then((res) => {
+        console.log(res.data)
+        if (res.status === 200) {
+            alert ("Album deleted!")
+        }})
+         .catch((err) => {
+        console.log(err)
+    })
+}
+
 function getAllAlbums () {axios.get('http://localhost:3004/albums')
 .then(res => {
     res.data.forEach(album => {
@@ -71,7 +82,7 @@ function getAllAlbums () {axios.get('http://localhost:3004/albums')
                 <p>Genre: ${album.genre}</p>
                 <p>Pressing: ${album.pressing}</p>
                 <p>Album Color: ${album.color}</p>
-                <button id = "delete-btn" onclick="deleteAlbum(${album['album_id']})">Delete</button>
+                <button id = "delete-btn" onclick="deleteAlbumCard(${album['album_id']})">Delete</button>
                 </div>
             `
         collectionContainer.innerHTML += albumCard
@@ -90,12 +101,6 @@ function showCollection () {
     btnContainer.remove()
     collectionContainer.hidden = false;
     getAllAlbums()
-}
-
-function deleteAlbum (id) {
-    axios.delete(`https://localhost:3004/albums/${id}`)
-        .then(()=> getAllAlbums())
-        .catch(err => console.log(err))
 }
 
 
