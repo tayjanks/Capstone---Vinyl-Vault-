@@ -1,5 +1,5 @@
 ## Table of contents
-*[General] (#general)
+*[General](#general)
 *[Technologies](#technologies)
 *[Setup](#setup)
 *[Dependencies](#dependencies)
