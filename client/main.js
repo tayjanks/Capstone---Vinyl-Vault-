@@ -1,5 +1,4 @@
 collectionContainer = document.querySelector("#collection-container")
-const errCallback = err => console.log(err)
 
 document.getElementById('form-container').hidden = true;
 document.getElementById('collection-container').hidden =true;
@@ -16,14 +15,11 @@ const formContainer = document.querySelector("#form-container")
 
 const addAlbumBtn = document.querySelector(".add-album-btn")
 
-
-
-
-    let title = document.querySelector("#album-title")
-    let artist= document.querySelector("#artist")
-    let genre= document.querySelector("#genre")
-    let pressing= document.querySelector("#pressing")
-    let color= document.querySelector("#color")
+let title = document.querySelector("#album-title")
+let artist= document.querySelector("#artist")
+let genre= document.querySelector("#genre")
+let pressing= document.querySelector("#pressing")
+let color= document.querySelector("#color")
 
 
 
@@ -51,19 +47,6 @@ function submitAlbum(e) {
         })
     }
 
-
-function createAlbumCard(album){
-    const albumCard = document.createElement('div')
-    albumCard.classList.add('album-card')
-
-    albumCard.innerHTML = `<p class = "album-title" ${album.title}</p>
-    <p class = "album-artist" ${album.artist}</p>
-    <p class = "album-genre" ${album.genre}</p>
-    <p class = "album-pressing" ${album.pressing}</p>
-    <p class = "album-color"${album.color}</p>
-    `
-    collectionContainer.appendChild(albumCard)
-};
 
 function deleteAlbumCard(id) {
     axios.delete(`http://localhost:3004/albums/${id}`)
