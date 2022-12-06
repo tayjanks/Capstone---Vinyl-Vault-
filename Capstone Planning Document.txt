@@ -1,0 +1,13 @@
+Capstone Planning Document
+
+Features (MVP)
+* Show all albums (get request)
+* Delete albums (delete request)
+* Add album (post request)
+
+Wire frames:
+
+
+
+DB:
+
